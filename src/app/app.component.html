@@ -1,0 +1,33 @@
+
+<label>X</label>
+<input type="text" [(ngModel)] = "jugadorX" id="jugadorA">
+<label>O</label> <input type="text" [(ngModel)] = "jugadorO" id="jugadorB">
+<br/>
+<div class="center_input">
+  <div class="boton">
+    <input type="button" class="btn1" value="Iniciar" (click)="iniciarJuego()">
+  </div>
+  <div class="boton">
+    <input [disabled]="btndes" type="button" class="btn2" value="Limpiar" (click)="nuevoJuego()">
+  </div>
+</div>
+<table class= "center" id= "tres_en_raya" *ngIf="juegoActivo">
+  <tr *ngFor="let i of tablero; index as fila">
+    <td *ngFor="let j of tablero; index as columna">
+      <input [disabled]="tablero[fila][columna] != null" type="button" id= "color" class="fondo" [ngClass]="{colores: tablero[fila][columna] == 'X', colores2: tablero[fila][columna] == 'O'}" value="{{tablero[fila][columna]}}" (click)="marcarPosicion(fila, columna)">
+    </td>
+  </tr>
+
+</table>
+<br>
+  <table  border="1" class="borde"  *ngIf="juegoActivo">
+    <tr>
+      <th>No. Juego</th>
+      <th>Jugador X</th>
+      <th>Jugador O</th>
+      <th>Resultado</th>
+    </tr>
+    <tr *ngFor="let h of juegos; index as fila2">
+      <td>{{fila2}}</td>
+      <td *ngFor="let f of [0,1,2]; index as columna2">{{juegos[fila2][columna2]}}</td>
+  </table>
